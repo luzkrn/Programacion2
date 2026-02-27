@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html><head><title>Ejemplo 33</title>
+<meta charset="UTF-8"> <!--<meta charset="iso-8859-1"> -->
+<meta name="viewport" content="width=device-width; initial-scale=1.0">
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" >
+<script src="bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="estilos.css">
+
+<script>
+window.onload = function () {
+document.formularioDatos.nombre.focus();
+document.formularioDatos.addEventListener('submit', validarFormulario);
+}
+ 
+function validarFormulario(evObject) {
+evObject.preventDefault();
+var todoCorrecto = true;
+var correctoEmail=true;
+var formulario = document.formularioDatos;
+for (var i=0; i<2; i++) {
+  if(formulario[i].type =='text') {// \s; representa un solo espacio en blanco, *; cero o más veces.
+     if (formulario[i].value == null || formulario[i].value.length == 0 || /^\s*$/.test(formulario[i].value)){
+      alert (formulario[i].name+ ' No puede estar vacío o contener sólo espacios en blanco');
+      todoCorrecto=false;                     
+	  }	
+   }     
+}
+// \S: representa un solo carácter que no sea un espacio en blanco, \+; una o más veces.
+ if (!(/\S+@\S+\.\S+/.test(formulario[2].value))){		
+		alert ('Correo electronico no valido');
+		correctoEmail=false;
+		}
+if (todoCorrecto ==true && correctoEmail==true) {formulario.submit();}
+}
+ 
+</script>
+</head>
+<body>
+<div class="container" id="formulario">      
+  <div class="registro">
+    <h2>Datos del cliente</h2>
+<div class="alert alert-info text-center">Verificacion del Email con expresion regular</div>
+<form name ="formularioDatos" method="POST" action="Cliente.php">
+  <div class="form-group">     
+   <label>Nombres:</label>            
+   <input type="text"  class="form-control" placeholder="nombres" name="nombre" id="nombre" </div>   
+  
+<div class="form-group">       
+<label>Apellidos:</label>        
+   <input type="text" class="form-control" placeholder="Apellidos" id="apellidos"  name="apellidos">        
+</div>  
+
+<div class="form-group">       
+<label>Correo electronico:</label>        
+   <input type="text" class="form-control" placeholder="Correo electronico" id="email" name="email">        
+</div>   
+<div class="form-group">   
+   <input type="submit" class="btn btn-primary btn-lg btn-block" value="enviar">   
+   <input type="reset" class="btn btn-danger btn-lg btn-block" value="limpiar">  
+</form>
+</div>
+</div>	
+</body>
+</html>
+

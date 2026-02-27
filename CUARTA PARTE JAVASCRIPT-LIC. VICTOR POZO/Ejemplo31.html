@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<html><head>
+<meta charset="utf-8">
+<title>Ejemplo 31-Validacion de formulario de registro</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="estilos.css">
+<script>
+window.onload = function () {
+//Metodo escuchador de eventos; si el usuario realiza alguna accion sobre un elemento.
+document.formularioDatos.nombre.focus();
+document.formularioDatos.addEventListener('submit', validarFormulario);
+}
+ 
+function validarFormulario(evObject) {
+	//Evita el envío del formulario hasta comprobar
+evObject.preventDefault();
+var todoCorrecto = true;
+var formulario = document.formularioDatos;
+	
+for (var i=0; i<formulario.length; i++) {
+  if(formulario[i].type =='text') { // \s; representa un solo espacio en blanco, *; cero o más veces.
+     if (formulario[i].value == null || formulario[i].value.length == 0 || /^\s*$/.test(formulario[i].value)){
+      alert (formulario[i].name+ ' No puede estar vacío o contener sólo espacios en blanco');
+      todoCorrecto=false;
+     }
+   }
+}
+if (todoCorrecto ==true) {formulario.submit();}
+}
+ 
+</script>
+</head>
+<body>
+
+    <div class="container" id="formulario">      
+        <div class="registro">
+            <h2>Registro del usuario</h2>
+            <form name="formularioDatos" class="form-horizontal" method="POST" action="Cliente.php">
+        
+		<div class="form-group">
+            <label for="validarNombre">Nombres:<span>*</span></label>
+            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre completo">
+        </div>
+  	
+	 	<div class="form-group">
+            <label for="validarDireccion">Apellidos:<span>*</span></label>
+            <input type="text" class="form-control" id="Apellido" name="apellido" placeholder="Apellidos">       
+    	</div>
+	
+       <div class="form-group">
+            <label for="validarEdad">Direccion:<span>*</span></label>
+            <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Direccion">
+       </div>
+   
+	   <div class="form-group">
+            <label for="validarEmail">Email:<span class="red">*</span></label>
+            <input type="text" class="form-control" id="email" name="email" placeholder="Correo electronico">
+        </div>
+   	
+		<div class="form-group">   
+     <div class="col-xs-6">         
+        <input type="submit" class="btn btn-primary btn-lg btn-block" value="enviar">   
+      </div>   
+     <div class="col-xs-6">      
+       	<input type="reset" class="btn btn-danger btn-lg btn-block" value="limpiar">        
+     </div> 
+	 </div>
+</form>
+</div>
+</div>	
+</body>
+</html>
+

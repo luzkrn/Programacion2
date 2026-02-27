@@ -1,0 +1,29 @@
+<html>
+<head><title>IMAGEN EN MOVIMIENTO</title>
+<meta charset="utf-8"> <!--<meta charset="iso-8859-1"> -->
+</head>
+<body onLoad="MueveCuadrado();">
+<Script>
+  var limiteSup=0,limiteInf=600,limiteIz=0,limiteDer=800;
+  var avanceh=2, avancev=2;
+	
+ function MueveCuadrado(){
+   if (parseInt(mov.style.left)<limiteIz){
+      avanceh=2;}
+   if (parseInt(mov.style.left)>limiteDer){
+      avanceh=-2;}
+   if (parseInt(mov.style.top)<limiteSup){
+      avancev=2;}
+   if (parseInt(mov.style.top)>limiteInf){
+      avancev=-2;}
+   mov.style.left= parseInt(mov.style.left)+avanceh;
+   mov.style.top= parseInt(mov.style.top)+avancev;
+   setTimeout("MueveCuadrado()",5);
+  }
+</Script>
+	
+ <div id="mov" Style="position:absolute; left:20; top:200; visibility:visible;z-index:2;">  
+  <IMG id="imagen" src="dado.gif" width=25 height=35>
+ </div> 
+ </BODY>
+</HTML>

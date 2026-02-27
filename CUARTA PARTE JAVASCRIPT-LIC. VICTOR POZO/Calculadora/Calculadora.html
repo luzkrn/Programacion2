@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+<head>
+    <title>Ejemplo de JavaScript</title>
+    <link rel="stylesheet" href="css/estilo.css">
+    <script src="javascript/codigo.js"></script>
+</head>
+<body onLoad="mostrarFecha()">
+<div id="contenedor">
+    <header>
+        CALCULADORA BASICA EN HTML 5
+</div>  
+	</header>
+  <div id="contenedor1">    
+    <section id="principal">
+        <aside>
+            <ul>
+                <li><a href="">Iniciar</a></li>
+                <li><a href="">Detener</a></li>
+                <li><a href="javascript:dialogos();">Dialogos</a></li>
+                <li><a href="">Cambiar color fondo</a></li>
+                <li><a href="">Abrir Ventana</a></li>
+            </ul>
+        </aside>
+        <section>
+            <article>
+                <h1 align="center">CALCULADORA BASICA EN HTML 5</h1>               
+                <form name="miFormulario" action="">
+                <table width="200" border="1">
+   		<tr>
+    		<td colspan="3"><input name="visor" type="text" ></td> 
+  		</tr>
+  		<tr>
+    		<td><input name="boton" type="button" value="1" text="1" onClick="desplegarValor(this.value)"></td>
+    <td><input name="boton" type="button" value="2" text="2" onClick="desplegarValor(this.value)"></td>
+    <td><input name="boton" type="button" value="3" text="3" onClick="desplegarValor(this.value)"></td>
+  </tr>
+  <tr>
+    <td><input name="boton" type="button" value="4" text="4" onClick="desplegarValor(this.value)"></td>
+    <td><input name="boton" type="button" value="5" text="5" onClick="desplegarValor(this.value)"></td>
+    <td><input name="boton" type="button" value="6" text="6" onClick="desplegarValor(this.value)"></td>
+  </tr>
+  <tr>
+    <td><input name="boton" type="button" value="7" text="7" onClick="desplegarValor(this.value)"></td>
+    <td><input name="boton" type="button" value="8" text="8" onClick="desplegarValor(this.value)"></td>
+    <td><input name="boton" type="button" value="9" text="9" onClick="desplegarValor(this.value)"></td>
+  </tr>
+ 
+  <tr>
+    <td><input name="boton" type="button" value="+" text="+" onClick="desplegarValor(this.value)"></td>
+    <td><input name="boton" type="button" value="-" text="-" onClick="desplegarValor(this.value)"></td>
+    <td><input name="boton" type="button" value="=" text="=" onClick="calcular()"></td>
+  </tr>
+</table>
+</form>
+                
+<form action="" method="get">
+
+<table width="200" border="1">
+  <tr>
+   <td><input name="vegetal" type="radio" value="apple" onClick="cambiarVegetal(this.value)">manzana</td></tr>
+   <tr><td><input name="vegetal" type="radio" value="banana" onClick="cambiarVegetal(this.value)">banana</td></tr>
+   <tr><td><input name="vegetal" type="radio" value="grapes" onClick="cambiarVegetal(this.value)">uva</td></tr>
+  <tr><td><input name="vegetal" type="radio" value="brocoli">brocoli</td></tr>
+  <tr><td><input name="vegetal" type="radio" value="manzana">manzana</td></tr>
+  <tr><td><input name="vegetal" type="radio" value="manzana">manzana</td></tr>
+  <tr><td><input name="vegetal" type="radio" value="manzana">manzana</td></tr>
+   
+   <tr><td><img src="" id="miGrafico" width="100" height="100"></td></tr>
+  
+</table>
+
+</form>
+            </article>
+        </section>
+    </section>
+    <footer>
+        &copy; 2024 - Derechos Reservados
+    </footer>
+</div>
+</body>
+</html>
