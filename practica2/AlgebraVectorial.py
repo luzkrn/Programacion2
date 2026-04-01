@@ -20,7 +20,11 @@ class AlgebraVectorial:
 
     @multimethod
     def perpendicular(self, v: 'AlgebraVectorial'):
+<<<<<<< HEAD
         return self.calcularPunto(v) == 0
+=======
+        return self.calcular_punto(v) == 0
+>>>>>>> f27a1fc9df331a540510583dc8849c83f72292bc
 
     @multimethod
     def perpendicular(self, v: 'AlgebraVectorial', tipo: int):
@@ -55,6 +59,7 @@ class AlgebraVectorial:
         return False
 
     def proyeccion(self, v):
+<<<<<<< HEAD
         den = v.moduloCuadrado()
         if den == 0: 
             return (0, 0)
@@ -66,6 +71,19 @@ class AlgebraVectorial:
         if mod_b == 0: 
             return 0.0
         return self.calcularPunto(v) / mod_b
+=======
+        den = v.modulo_cuadrado()
+        if den == 0: 
+            return (0, 0)
+        esc = self.calcular_punto(v) / den
+        return (v.getX() * esc, v.getY() * esc)
+
+    def componente(self, v):
+        mod_b = math.sqrt(v.modulo_cuadrado())
+        if mod_b == 0: 
+            return 0.0
+        return self.calcular_punto(v) / mod_b
+>>>>>>> f27a1fc9df331a540510583dc8849c83f72292bc
 
     def __str__(self):
         return f"({self.__x}, {self.__y})"

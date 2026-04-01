@@ -2,7 +2,7 @@ import random
 import time
 #clase
 class Cronometro:
-    #atributos,constructor
+    #atributos
 
     def __init__(self):
         self.__inicia = time.time()
