@@ -5,8 +5,10 @@ class AlgebraVectorial:
         self.__x = x
         self.__y = y
 
-    def getX(self): return self.__x
-    def getY(self): return self.__y
+    def getX(self): 
+        return self.__x
+    def getY(self):
+        return self.__y
 
     def calcular_punto(self, v):
         return self.__x * v.getX() + self.__y * v.getY()
