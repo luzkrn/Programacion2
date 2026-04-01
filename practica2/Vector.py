@@ -19,9 +19,7 @@ class VectorTridimensional :
         return math.sqrt(self.a1**2 + self.a2**2 + self.a3**2)
 
     def normalizar(self):
-        mag = abs(self)
-        if mag == 0:
-            raise ValueError("No se puede normalizar un vector nulo.")
+        mag = math.sqrt(self.a1**2 + self.a2**2 + self.a3**2)
         return VectorTridimensional(self.a1 / mag, self.a2 / mag, self.a3 / mag)
 
 
@@ -30,10 +28,10 @@ class VectorTridimensional :
 
 
     def __xor__(self, b):
-        res_a1 = self.a2 * b.a3 - self.a3 * b.a2
-        res_a2 = self.a3 * b.a1 - self.a1 * b.a3
-        res_a3 = self.a1 * b.a2 - self.a2 * b.a1
-        return VectorTridimensional(res_a1, res_a2, res_a3)
+        aux_a1 = self.a2 * b.a3 - self.a3 * b.a2
+        aux_a2 = self.a3 * b.a1 - self.a1 * b.a3
+        aux_a3 = self.a1 * b.a2 - self.a2 * b.a1
+        return VectorTridimensional(aux_a1, aux_a2, aux_a3)
 
     def __str__(self):
         return f"({self.a1}, {self.a2}, {self.a3})"
