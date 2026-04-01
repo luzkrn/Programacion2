@@ -1,111 +1,87 @@
 import math
 
-class Vector:
+class AlgebraVectorial:
     def __init__(self, x=0.0, y=0.0):
         self.__x = x
         self.__y = y
 
-    def getX(self):
-        return self.__x
-    def getY(self):
-        return self.__y
+    def getX(self): return self.__x
+    def getY(self): return self.__y
 
-    def modulo(self):
-        return math.sqrt(self.__x**2 + self.__y**2)
-
-    def punto(self, v):
+    def calcular_punto(self, v):
         return self.__x * v.getX() + self.__y * v.getY()
 
-    def cruz(self, v):
-        return self.__x * v.getY() - self.__y * v.getX()
+    def modulo_cuadrado(self):
+        return self.__x**2 + self.__y**2
 
-    def __add__(self, v):
-        return Vector(self.__x + v.getX(), self.__y + v.getY())
+    def perpendicular(self, v, tipo=1):
+        if tipo == 1:
+            izq = (self.__x + v.getX())**2 + (self.__y + v.getY())**2
+            der = (self.__x - v.getX())**2 + (self.__y - v.getY())**2
+            return izq == der
+        elif tipo == 2:
+            izq = (self.__x - v.getX())**2 + (self.__y - v.getY())**2
+            der = (v.getX() - self.__x)**2 + (v.getY() - self.__y)**2
+            return izq == der
+        elif tipo == 3:
+            return self.calcular_punto(v) == 0
+        elif tipo == 4:
+            izq = (self.__x + v.getX())**2 + (self.__y + v.getY())**2
+            der = self.modulo_cuadrado() + v.modulo_cuadrado()
+            return izq == der
 
-    def __sub__(self, v):
-        return Vector(self.__x - v.getX(), self.__y - v.getY())
+    def paralela(self, v, tipo=1):
+        if tipo == 1:
+            if v.getX() != 0 and v.getY() != 0:
+                return self.__x / v.getX() == self.__y / v.getY()
+            return False
+        elif tipo == 2:
+            return (self.__x * v.getY() - self.__y * v.getX()) == 0
+
+    def proyeccion(self, v):
+        den = v.modulo_cuadrado()
+        if den == 0: return (0, 0)
+        esc = self.calcular_punto(v) / den
+        return (v.getX() * esc, v.getY() * esc)
+
+    def componente(self, v):
+        mod_b = math.sqrt(v.modulo_cuadrado())
+        if mod_b == 0: return 0.0
+        return self.calcular_punto(v) / mod_b
 
     def __str__(self):
-        return f"({self.__x:.2f}, {self.__y:.2f})"
-
-
-class AlgebraVectorial:
-    def __init__(self, a=None, b=None):
-        self.__a = a
-        self.__b = b
-
-    def perpendicular(self, tipo=1):
-        a, b = self.__a, self.__b
-        
-        if tipo == 1:
-            return abs((a + b).modulo() - (a - b).modulo()) < 0.0001
-        
-        elif tipo == 2:
-            return abs((a - b).modulo() - (b - a).modulo()) < 0.0001
-            
-        elif tipo == 3:
-            return a.punto(b) == 0
-            
-        elif tipo == 4:
-            izq = (a + b).modulo()**2
-            der = a.modulo()**2 + b.modulo()**2
-            return abs(izq - der) < 0.0001
-
-    def paralela(self, tipo=1):
-        a, b = self.__a, self.__b
-        
-        if tipo == 1:
-            if b.getX() != 0:
-                r = a.getX() / b.getX()
-                return abs(a.getY() - r * b.getY()) < 0.0001
-            elif b.getY() != 0:
-                r = a.getY() / b.getY()
-                return abs(a.getX() - r * b.getX()) < 0.0001
-            return False
-            
-        elif tipo == 2:
-            return a.cruz(b) == 0
-
-    def proyeccion(self):
-        a, b = self.__a, self.__b
-        denominador = b.modulo()**2
-        if denominador == 0: return Vector(0, 0)
-        escalar = a.punto(b) / denominador
-        return Vector(b.getX() * escalar, b.getY() * escalar)
-
-    def componente(self): 
-        a, b = self.__a, self.__b
-        if b.modulo() == 0: return 0.0
-        return a.punto(b) / b.modulo()
-
+        return f"({self.__x}, {self.__y})"
 
 class Main:
-    v1 = Vector(5, 6)
-    v2 = Vector(7, 8)
-    av = AlgebraVectorial(v1, v2)
-    if av.perpendicular(1):
+
+    v1 = AlgebraVectorial(1, 9)  
+    v2 = AlgebraVectorial(2, 6) 
+
+    print(f"Vector A: {v1}")
+    print(f"Vector B: {v2}")
+
+    if v1.perpendicular(v2, 1):
         print("a) es perpendicular")
     else:
         print("a) no es perpendicular")
-    if av.perpendicular(2):
-        print("b) es perpendicular")
+
+    if v1.perpendicular(v2, 2):
+        print("b) es mutuamente ortogonal")
     else:
-        print("b) no es perpendicular")
-    if av.perpendicular(3):
-        print("c) es perpendicular")
+        print("b) no es mutuamente ortogonal")
+
+    if v1.perpendicular(v2, 3):
+        print("c)  es ortogonal")
     else:
-        print("c) no es perpendicular")
-    if av.perpendicular(4):
+        print("c) no es ortogonal")
+
+    if v1.perpendicular(v2, 4):
         print("d) es perpendicular")
     else:
         print("d) no es perpendicular")
-    if av.paralela(1):
-        print("e) es paralelo")
-    else:
-        print("e) no es paralelo")
-    if av.paralela(2):
-        print("f) es paralelo")
-    else:
-        print("f) no es paralelo")
-    print(f"g) proyeccion: {av.proyeccion()}")
-    print(f"h) componente: {av.componente():.15f}")
+
+    print(f"e) {'Es paralelo' if v1.paralela(v2, 1) else 'no es paralelo'}")
+    print(f"f) {'Es paralelo (cruz = 0)' if v1.paralela(v2, 2) else 'no es paralelo'}")
+    
+    print(f"g) Proyeccion de A sobre B: {v1.proyeccion(v2)}")
+    print(f"h) Componente de A en B: {v1.componente(v2):.2f}")
