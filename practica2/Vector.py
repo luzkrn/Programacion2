@@ -18,7 +18,7 @@ class VectorTridimensional :
     def __abs__(self):
         return math.sqrt(self.a1**2 + self.a2**2 + self.a3**2)
 
-    def normalizar(self):
+    def normalVector(self):
         mag = math.sqrt(self.a1**2 + self.a2**2 + self.a3**2)
         return VectorTridimensional(self.a1 / mag, self.a2 / mag, self.a3 / mag)
 
