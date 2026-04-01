@@ -47,4 +47,4 @@ class Main:
     print(f"Longitud |A|: {abs(v1):.2f}")
     print(f"Producto Escalar (A . B): {v1 @ v2}")
     print(f"Producto Vectorial (A x B): {v1 ^ v2}")
-    print(f"Vector A normalizado: {v1.normalizar()}")
+    print(f"Vector A normalizado: {v1.normalVector()}")
