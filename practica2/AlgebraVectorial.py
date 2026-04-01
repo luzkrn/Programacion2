@@ -12,15 +12,15 @@ class AlgebraVectorial:
     def getY(self):
         return self.__y
 
-    def calcular_punto(self, v):
+    def calcularPunto(self, v):
         return self.__x * v.getX() + self.__y * v.getY()
 
-    def modulo_cuadrado(self):
+    def moduloCuadrado(self):
         return self.__x**2 + self.__y**2
 
     @multimethod
     def perpendicular(self, v: 'AlgebraVectorial'):
-        return self.calcular_punto(v) == 0
+        return self.calcularPunto(v) == 0
 
     @multimethod
     def perpendicular(self, v: 'AlgebraVectorial', tipo: int):
@@ -33,10 +33,10 @@ class AlgebraVectorial:
             der = (v.getX() - self.__x)**2 + (v.getY() - self.__y)**2
             return izq == der
         elif tipo == 3:
-            return self.calcular_punto(v) == 0
+            return self.calcularPunto(v) == 0
         elif tipo == 4:
             izq = (self.__x + v.getX())**2 + (self.__y + v.getY())**2
-            der = self.modulo_cuadrado() + v.modulo_cuadrado()
+            der = self.moduloCuadrado() + v.moduloCuadrado()
             return izq == der
         return False
 
@@ -55,17 +55,17 @@ class AlgebraVectorial:
         return False
 
     def proyeccion(self, v):
-        den = v.modulo_cuadrado()
+        den = v.moduloCuadrado()
         if den == 0: 
             return (0, 0)
-        esc = self.calcular_punto(v) / den
+        esc = self.calcularPunto(v) / den
         return (v.getX() * esc, v.getY() * esc)
 
     def componente(self, v):
-        mod_b = math.sqrt(v.modulo_cuadrado())
+        mod_b = math.sqrt(v.moduloCuadrado())
         if mod_b == 0: 
             return 0.0
-        return self.calcular_punto(v) / mod_b
+        return self.calcularPunto(v) / mod_b
 
     def __str__(self):
         return f"({self.__x}, {self.__y})"
