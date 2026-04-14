@@ -11,6 +11,7 @@ class AlgebraVectorial:
     
     def getY(self):
         return self.__y
+    
 
     def calcularPunto(self, v):
         return self.__x * v.getX() + self.__y * v.getY()
